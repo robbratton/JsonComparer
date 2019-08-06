@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CompareNETObjects" Version="4.57.0" />
+    <PackageReference Include="DeepEqual" Version="2.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="JsonDiffPatchDotNet">
+      <HintPath>..\..\..\..\..\.nuget\packages\jsondiffpatch.net\2.1.0\lib\netstandard2.0\JsonDiffPatchDotNet.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,101 @@
+{
+	"_links": [
+		{
+			"self": {
+				"href": "https://dev.azure.com/upmcappsvcs/f39ff6aa-3b5f-41f1-ba61-e4a72a4a0d13/_apis/build/Definitions/1728?revision=3"
+			},
+			"web": {
+				"href": "https://dev.azure.com/upmcappsvcs/f39ff6aa-3b5f-41f1-ba61-e4a72a4a0d13/_build/definition?definitionId=1728"
+			},
+			"editor": {
+				"href": "https://dev.azure.com/upmcappsvcs/f39ff6aa-3b5f-41f1-ba61-e4a72a4a0d13/_build/designer?id=1728&_a=edit-build-definition"
+			},
+			"badge": {
+				"href": "https://dev.azure.com/upmcappsvcs/f39ff6aa-3b5f-41f1-ba61-e4a72a4a0d13/_apis/build/status/1728"
+			}
+		},
+		0,
+		0
+	],
+	"repository": {
+		"url": [
+			"https://upmcappsvcs@dev.azure.com/upmcappsvcs/Apollo/_git/Microservice-Healthwise",
+			"https://upmcappsvcs.visualstudio.com/Apollo/_git/Microservice-Healthwise"
+		]
+	},
+	"authoredBy": {
+		"_links": [
+			{
+				"avatar": {
+					"href": "https://dev.azure.com/upmcappsvcs/_apis/GraphProfile/MemberAvatars/aad.NGQzODk1NmUtYjgxYS03OGY0LTkyMzYtYTkzOTFkNDc1NWVj"
+				}
+			},
+			0,
+			0
+		],
+		"imageUrl": [
+			"https://dev.azure.com/upmcappsvcs/_api/_common/identityImage?id=63759b4d-3b9d-4acc-9d87-5fd4f7ae7a23",
+			"https://upmcappsvcs.visualstudio.com/_api/_common/identityImage?id=63759b4d-3b9d-4acc-9d87-5fd4f7ae7a23"
+		],
+		"descriptor": [
+			"aad.NGQzODk1NmUtYjgxYS03OGY0LTkyMzYtYTkzOTFkNDc1NWVj",
+			0,
+			0
+		],
+		"additionalProperties": [
+			{
+				"_links": {
+					"avatar": {
+						"href": "https://upmcappsvcs.visualstudio.com/_apis/GraphProfile/MemberAvatars/aad.NGQzODk1NmUtYjgxYS03OGY0LTkyMzYtYTkzOTFkNDc1NWVj"
+					}
+				},
+				"descriptor": "aad.NGQzODk1NmUtYjgxYS03OGY0LTkyMzYtYTkzOTFkNDc1NWVj"
+			}
+		]
+	},
+	"queue": {
+		"_links": [
+			{
+				"self": {
+					"href": "https://dev.azure.com/upmcappsvcs/_apis/build/Queues/8"
+				}
+			},
+			0,
+			0
+		],
+		"url": [
+			"https://dev.azure.com/upmcappsvcs/_apis/build/Queues/8",
+			"https://upmcappsvcs.visualstudio.com/_apis/build/Queues/8"
+		]
+	},
+	"url": [
+		"https://dev.azure.com/upmcappsvcs/f39ff6aa-3b5f-41f1-ba61-e4a72a4a0d13/_apis/build/Definitions/1728?revision=3",
+		"https://upmcappsvcs.visualstudio.com/f39ff6aa-3b5f-41f1-ba61-e4a72a4a0d13/_apis/build/Definitions/1728?revision=3"
+	],
+	"createdDate": [
+		"2019-01-02T17:03:50.667Z",
+		"2019-01-02T12:03:50.667-05:00"
+	],
+	"project": {
+		"url": [
+			"https://dev.azure.com/upmcappsvcs/_apis/projects/f39ff6aa-3b5f-41f1-ba61-e4a72a4a0d13",
+			"https://upmcappsvcs.visualstudio.com/_apis/projects/f39ff6aa-3b5f-41f1-ba61-e4a72a4a0d13"
+		],
+		"lastUpdateTime": [
+			"2019-02-15T13:03:27.957Z",
+			0,
+			0
+		],
+		"additionalProperties": [
+			{
+				"lastUpdateTime": "2019-02-15T13:03:27.957Z"
+			}
+		]
+	},
+	"additionalProperties": [
+		{}
+	],
+	"processParameters": [
+		{}
+	]
+}

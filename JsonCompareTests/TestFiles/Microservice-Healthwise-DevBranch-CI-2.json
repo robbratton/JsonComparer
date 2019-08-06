@@ -1,0 +1,270 @@
+{
+	"options": [
+		{
+			"enabled": true,
+			"definition": {
+				"id": "5d58cc01-7c75-450c-be18-a388ddb129ec"
+			},
+			"inputs": {
+				"branchFilters": "[\"+refs/heads/*\"]",
+				
+			}
+		},
+		{
+			"enabled": true,
+			"definition": {
+				"id": "a9db38f9-9fdc-478c-b0f9-464221e58316"
+			},
+			"inputs": {
+				"workItemType": "201",
+				"assignToRequestor": "true",
+				
+			}
+		}
+	],
+	"triggers": [
+		{
+			"branchFilters": [
+				"+refs/heads/develop"
+			],
+			"batchChanges": true,
+			"maxConcurrentBuildsPerBranch": 1,
+			"pollingInterval": 0,
+			"triggerType": "continuousIntegration"
+		}
+	],
+	"variables": {
+		"AppConfigTargetEnvironment": {
+			"value": "dev"
+		},
+		"BuildConfiguration": {
+			"value": "Debug"
+		},
+		"BuildPlatform": {
+			"value": "Any CPU"
+		},
+		"system.debug": {
+			"value": "false",
+			"allowOverride": true
+		}
+	},
+	"retentionRules": [
+		{
+			"branches": [
+				"+refs/heads/*"
+			],
+			"artifactTypesToDelete": [
+				"FilePath",
+				"SymbolStore"
+			],
+			"daysToKeep": 10,
+			"minimumToKeep": 1,
+			"deleteBuildRecord": true,
+			"deleteTestResults": true
+		}
+	],
+	"_links": {
+		"self": {
+			"href": "https://dev.azure.com/upmcappsvcs/f39ff6aa-3b5f-41f1-ba61-e4a72a4a0d13/_apis/build/Definitions/1728?revision=3"
+		},
+		"web": {
+			"href": "https://dev.azure.com/upmcappsvcs/f39ff6aa-3b5f-41f1-ba61-e4a72a4a0d13/_build/definition?definitionId=1728"
+		},
+		"editor": {
+			"href": "https://dev.azure.com/upmcappsvcs/f39ff6aa-3b5f-41f1-ba61-e4a72a4a0d13/_build/designer?id=1728&_a=edit-build-definition"
+		},
+		"badge": {
+			"href": "https://dev.azure.com/upmcappsvcs/f39ff6aa-3b5f-41f1-ba61-e4a72a4a0d13/_apis/build/status/1728"
+		}
+	},
+	"comment": "Enabled since we'll be merging today.",
+	"jobAuthorizationScope": "projectCollection",
+	"jobTimeoutInMinutes": 60,
+	"jobCancelTimeoutInMinutes": 5,
+	"process": {
+		"phases": [
+			{
+				"name": "Main",
+				"refName": "Phase_1",
+				"condition": "succeeded()",
+				"target": {
+					"executionOptions": {
+						"type": 0
+					},
+					"allowScriptsAuthAccessOption": true,
+					"type": 1
+				},
+				"jobAuthorizationScope": "projectCollection",
+				"jobCancelTimeoutInMinutes": 1
+			},
+			{
+				"steps": [
+					{
+						"enabled": true,
+						"continueOnError": true,
+						"alwaysRun": true,
+						"displayName": "Task group: WIP-Services_Partial-PollingSteps $(AppConfigTargetEnvironment)",
+						"timeoutInMinutes": 0,
+						"condition": "succeededOrFailed()",
+						"task": {
+							"id": "c1c85daa-4a08-4f84-8766-a8f749a9dffd",
+							"versionSpec": "1.*",
+							"definitionType": "metaTask"
+						},
+						"inputs": {
+							"AppConfigTargetEnvironment": "$(AppConfigTargetEnvironment)",
+							"BuildConfiguration": "$(BuildConfiguration)",
+							"BuildProject": "$(BuildProject)"
+						}
+					}
+				],
+				"name": "Polling",
+				"refName": "Phase_2",
+				"condition": "succeededOrFailed()",
+				"target": {
+					"executionOptions": {
+						"type": 0
+					},
+					"allowScriptsAuthAccessOption": true,
+					"type": 1
+				},
+				"jobAuthorizationScope": "projectCollection",
+				"jobCancelTimeoutInMinutes": 1
+			},
+			{
+				"steps": [
+					{
+						"enabled": true,
+						"continueOnError": true,
+						"alwaysRun": true,
+						"displayName": "Task group: WIP-Services_Partial-ServiceBusBuildSteps $(AppConfigTargetEnvironment)",
+						"timeoutInMinutes": 0,
+						"condition": "succeededOrFailed()",
+						"task": {
+							"id": "388241ba-57e5-4517-b5bf-61b8934e5605",
+							"versionSpec": "1.*",
+							"definitionType": "metaTask"
+						},
+						"inputs": {
+							"AppConfigTargetEnvironment": "$(AppConfigTargetEnvironment)",
+							"BuildConfiguration": "$(BuildConfiguration)",
+							"BuildProject": "$(BuildProject)"
+						}
+					}
+				],
+				"name": "Service Bus",
+				"refName": "Phase_4",
+				"condition": "succeededOrFailed()",
+				"target": {
+					"executionOptions": {
+						"type": 0
+					},
+					"allowScriptsAuthAccessOption": true,
+					"type": 1
+				},
+				"jobAuthorizationScope": "projectCollection",
+				"jobCancelTimeoutInMinutes": 1
+			},
+			{
+				"steps": [
+					{
+						"enabled": true,
+						"continueOnError": true,
+						"alwaysRun": true,
+						"displayName": "Task group: WIP-Services_Partial-WebAPIBuildSteps $(BuildConfiguration)",
+						"timeoutInMinutes": 0,
+						"condition": "succeededOrFailed()",
+						"task": {
+							"id": "a65ebbca-9bbe-4128-8e3e-6841c26ebc89",
+							"versionSpec": "1.*",
+							"definitionType": "metaTask"
+						},
+						"inputs": {
+							"BuildConfiguration": "$(BuildConfiguration)",
+							"BuildProject": "$(BuildProject)"
+						}
+					}
+				],
+				"name": "Web API",
+				"refName": "Phase_5",
+				"condition": "succeededOrFailed()",
+				"target": {
+					"executionOptions": {
+						"type": 0
+					},
+					"allowScriptsAuthAccessOption": true,
+					"type": 1
+				},
+				"jobAuthorizationScope": "projectCollection",
+				"jobCancelTimeoutInMinutes": 1
+			}
+		],
+		"type": 1
+	},
+	"repository": {
+		"properties": {
+			"cleanOptions": "0",
+			"labelSources": "0",
+			"labelSourcesFormat": "$(build.buildNumber)",
+			"reportBuildStatus": "true",
+			"gitLfsSupport": "false",
+			"skipSyncSource": "false",
+			"checkoutNestedSubmodules": "false",
+			"fetchDepth": "0"
+		},
+		"id": "51675c07-2ed4-498c-8f6c-bde5fb670ee1",
+		"type": "TfsGit",
+		"name": "Microservice-Healthwise",
+		"url": "https://upmcappsvcs@dev.azure.com/upmcappsvcs/Apollo/_git/Microservice-Healthwise",
+		"defaultBranch": "refs/heads/develop",
+		"clean": "false",
+		"checkoutSubmodules": false
+	},
+	"quality": "definition",
+	"authoredBy": {
+		"displayName": "Robert Bratton",
+		"url": "https://spsprodcus3.vssps.visualstudio.com/Af32ff5be-c21c-4df8-9bd8-f806513572c3/_apis/Identities/63759b4d-3b9d-4acc-9d87-5fd4f7ae7a23",
+		"_links": {
+			"avatar": {
+				"href": "https://dev.azure.com/upmcappsvcs/_apis/GraphProfile/MemberAvatars/aad.NGQzODk1NmUtYjgxYS03OGY0LTkyMzYtYTkzOTFkNDc1NWVj"
+			}
+		},
+		"id": "63759b4d-3b9d-4acc-9d87-5fd4f7ae7a23",
+		"uniqueName": "brattonr2@upmc.edu",
+		"imageUrl": "https://dev.azure.com/upmcappsvcs/_api/_common/identityImage?id=63759b4d-3b9d-4acc-9d87-5fd4f7ae7a23",
+		"descriptor": "aad.NGQzODk1NmUtYjgxYS03OGY0LTkyMzYtYTkzOTFkNDc1NWVj"
+	},
+	"queue": {
+		"_links": {
+			"self": {
+				"href": "https://dev.azure.com/upmcappsvcs/_apis/build/Queues/8"
+			}
+		},
+		"id": 8,
+		"name": "Hosted VS2017",
+		"url": "https://dev.azure.com/upmcappsvcs/_apis/build/Queues/8",
+		"pool": {
+			"id": 3,
+			"name": "Hosted VS2017",
+			"isHosted": true
+		}
+	},
+	"id": 1728,
+	"name": "Microservice-Healthwise-DevBranch-CI",
+	"url": "https://dev.azure.com/upmcappsvcs/f39ff6aa-3b5f-41f1-ba61-e4a72a4a0d13/_apis/build/Definitions/1728?revision=3",
+	"uri": "vstfs:///Build/Definition/1728",
+	"path": "\\Services-Microservices",
+	"type": "build",
+	"queueStatus": "enabled",
+	"revision": 3,
+	"createdDate": "2019-01-02T17:03:50.667Z",
+	"project": {
+		"id": "f39ff6aa-3b5f-41f1-ba61-e4a72a4a0d13",
+		"name": "Apollo",
+		"url": "https://dev.azure.com/upmcappsvcs/_apis/projects/f39ff6aa-3b5f-41f1-ba61-e4a72a4a0d13",
+		"state": "wellFormed",
+		"revision": 1802486,
+		"visibility": "private",
+		"lastUpdateTime": "2019-02-15T13:03:27.957Z"
+	}
+}
